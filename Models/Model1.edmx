@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HumanaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblClaimsdata">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProcessDate" Type="date" />
+          <Property Name="AuditID" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProcessorName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BatchNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Leads" Type="nvarchar" MaxLength="50" />
+          <Property Name="ClientID" Type="nchar" MaxLength="10" />
+          <Property Name="TotalChargeAmount" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="TotalPaidAmount" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Claimnumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="OriginalCorrectedClaim" Type="nvarchar" MaxLength="50" />
+          <Property Name="Auditor" Type="nvarchar" MaxLength="50" />
+          <Property Name="AuditDate" Type="date" />
+          <Property Name="IHT_nonIHT" Type="bit" />
+          <Property Name="ErrorComment" Type="nvarchar" MaxLength="50" />
+          <Property Name="ErrorType" Type="nvarchar" MaxLength="50" />
+          <Property Name="OverUnderPayment" Type="nvarchar" MaxLength="50" />
+          <Property Name="ErrorCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ErrorCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="ErrorSubCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="CorrectionStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="RebuttalComment" Type="nvarchar" MaxLength="50" />
+          <Property Name="AuditorAgreeDisagreeonRebuttal" Type="nvarchar" MaxLength="50" />
+          <Property Name="Auditorcommentifdisagree" Type="nvarchar" MaxLength="50" />
+          <Property Name="AssignName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Humana.dbo.tblemployee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tblemployee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DAS_ID" Type="nvarchar" MaxLength="50" />
+          <Property Name="NESSIE_ID" Type="nvarchar" MaxLength="50" />
+          <Property Name="SS_ID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name__Sortable_" Type="nvarchar" MaxLength="50" />
+          <Property Name="GCM_Levels" Type="nvarchar" MaxLength="50" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="50" />
+          <Property Name="Hire_Date" Type="datetime" />
+          <Property Name="Position" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="Master_Cost_Center" Type="nvarchar" MaxLength="50" />
+          <Property Name="Organizational_Unit" Type="nvarchar" MaxLength="50" />
+          <Property Name="Organizational_Unit_Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="WBS_Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="WBS_Description_" Type="nvarchar" MaxLength="50" />
+          <Property Name="PID_" Type="nvarchar" MaxLength="50" />
+          <Property Name="Project_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sub_Verticals" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sub_Functions" Type="nvarchar" MaxLength="50" />
+          <Property Name="Company_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Entity" Type="nvarchar" MaxLength="50" />
+          <Property Name="Functions__Ops_Support_" Type="nvarchar" MaxLength="50" />
+          <Property Name="Billability_Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Reporting_Manager_SAP_ID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Reporting_Manager" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="Location" Type="nvarchar" MaxLength="50" />
+          <Property Name="Curr__Loc__HR_Mngr" Type="nvarchar" MaxLength="50" />
+          <Property Name="E_Mail_Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="SS_E_Mail_Address" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblExcelfiles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Filename" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="HumanaModelStoreContainer">
+          <EntitySet Name="tblClaimsdata" EntityType="Self.tblClaimsdata" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblExcelfiles" EntityType="Self.tblExcelfiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblemployee" EntityType="Self.tblemployee" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblemployee].[Id] AS [Id], 
+    [tblemployee].[DAS_ID] AS [DAS_ID], 
+    [tblemployee].[NESSIE_ID] AS [NESSIE_ID], 
+    [tblemployee].[SS_ID] AS [SS_ID], 
+    [tblemployee].[Name__Sortable_] AS [Name__Sortable_], 
+    [tblemployee].[GCM_Levels] AS [GCM_Levels], 
+    [tblemployee].[Designation] AS [Designation], 
+    [tblemployee].[Hire_Date] AS [Hire_Date], 
+    [tblemployee].[Position] AS [Position], 
+    [tblemployee].[Gender] AS [Gender], 
+    [tblemployee].[Master_Cost_Center] AS [Master_Cost_Center], 
+    [tblemployee].[Organizational_Unit] AS [Organizational_Unit], 
+    [tblemployee].[Organizational_Unit_Description] AS [Organizational_Unit_Description], 
+    [tblemployee].[WBS_Code] AS [WBS_Code], 
+    [tblemployee].[WBS_Description_] AS [WBS_Description_], 
+    [tblemployee].[PID_] AS [PID_], 
+    [tblemployee].[Project_Name] AS [Project_Name], 
+    [tblemployee].[Sub_Verticals] AS [Sub_Verticals], 
+    [tblemployee].[Sub_Functions] AS [Sub_Functions], 
+    [tblemployee].[Company_Name] AS [Company_Name], 
+    [tblemployee].[Entity] AS [Entity], 
+    [tblemployee].[Functions__Ops_Support_] AS [Functions__Ops_Support_], 
+    [tblemployee].[Billability_Status] AS [Billability_Status], 
+    [tblemployee].[Reporting_Manager_SAP_ID] AS [Reporting_Manager_SAP_ID], 
+    [tblemployee].[Reporting_Manager] AS [Reporting_Manager], 
+    [tblemployee].[Country] AS [Country], 
+    [tblemployee].[Location] AS [Location], 
+    [tblemployee].[Curr__Loc__HR_Mngr] AS [Curr__Loc__HR_Mngr], 
+    [tblemployee].[E_Mail_Address] AS [E_Mail_Address], 
+    [tblemployee].[SS_E_Mail_Address] AS [SS_E_Mail_Address]
+    FROM [dbo].[tblemployee] AS [tblemployee]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HumanaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblClaimsdata">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProcessDate" Type="DateTime" Precision="0" />
+          <Property Name="AuditID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BatchNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Leads" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TotalChargeAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TotalPaidAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Claimnumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OriginalCorrectedClaim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Auditor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AuditDate" Type="DateTime" Precision="0" />
+          <Property Name="IHT_nonIHT" Type="Boolean" />
+          <Property Name="ErrorComment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ErrorType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OverUnderPayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ErrorCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ErrorCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ErrorSubCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CorrectionStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RebuttalComment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AuditorAgreeDisagreeonRebuttal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Auditorcommentifdisagree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AssignName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblExcelfile">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Filename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblemployee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DAS_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NESSIE_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SS_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name__Sortable_" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GCM_Levels" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Hire_Date" Type="DateTime" Precision="3" />
+          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Master_Cost_Center" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Organizational_Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Organizational_Unit_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WBS_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WBS_Description_" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PID_" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Project_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sub_Verticals" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sub_Functions" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Company_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Entity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Functions__Ops_Support_" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Billability_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Reporting_Manager_SAP_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Reporting_Manager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Curr__Loc__HR_Mngr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="E_Mail_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SS_E_Mail_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="HumanaEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblClaimsdatas" EntityType="Self.tblClaimsdata" />
+          <EntitySet Name="tblExcelfiles" EntityType="Self.tblExcelfile" />
+          <EntitySet Name="tblemployees" EntityType="Self.tblemployee" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HumanaModelStoreContainer" CdmEntityContainer="HumanaEntities1">
+          <EntitySetMapping Name="tblClaimsdatas">
+            <EntityTypeMapping TypeName="HumanaModel.tblClaimsdata">
+              <MappingFragment StoreEntitySet="tblClaimsdata">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProcessDate" ColumnName="ProcessDate" />
+                <ScalarProperty Name="AuditID" ColumnName="AuditID" />
+                <ScalarProperty Name="ProcessorName" ColumnName="ProcessorName" />
+                <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
+                <ScalarProperty Name="Leads" ColumnName="Leads" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="TotalChargeAmount" ColumnName="TotalChargeAmount" />
+                <ScalarProperty Name="TotalPaidAmount" ColumnName="TotalPaidAmount" />
+                <ScalarProperty Name="Claimnumber" ColumnName="Claimnumber" />
+                <ScalarProperty Name="OriginalCorrectedClaim" ColumnName="OriginalCorrectedClaim" />
+                <ScalarProperty Name="Auditor" ColumnName="Auditor" />
+                <ScalarProperty Name="AuditDate" ColumnName="AuditDate" />
+                <ScalarProperty Name="IHT_nonIHT" ColumnName="IHT_nonIHT" />
+                <ScalarProperty Name="ErrorComment" ColumnName="ErrorComment" />
+                <ScalarProperty Name="ErrorType" ColumnName="ErrorType" />
+                <ScalarProperty Name="OverUnderPayment" ColumnName="OverUnderPayment" />
+                <ScalarProperty Name="ErrorCode" ColumnName="ErrorCode" />
+                <ScalarProperty Name="ErrorCategory" ColumnName="ErrorCategory" />
+                <ScalarProperty Name="ErrorSubCategory" ColumnName="ErrorSubCategory" />
+                <ScalarProperty Name="CorrectionStatus" ColumnName="CorrectionStatus" />
+                <ScalarProperty Name="RebuttalComment" ColumnName="RebuttalComment" />
+                <ScalarProperty Name="AuditorAgreeDisagreeonRebuttal" ColumnName="AuditorAgreeDisagreeonRebuttal" />
+                <ScalarProperty Name="Auditorcommentifdisagree" ColumnName="Auditorcommentifdisagree" />
+                <ScalarProperty Name="AssignName" ColumnName="AssignName" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblExcelfiles">
+            <EntityTypeMapping TypeName="HumanaModel.tblExcelfile">
+              <MappingFragment StoreEntitySet="tblExcelfiles">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblemployees">
+            <EntityTypeMapping TypeName="HumanaModel.tblemployee">
+              <MappingFragment StoreEntitySet="tblemployee">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DAS_ID" ColumnName="DAS_ID" />
+                <ScalarProperty Name="NESSIE_ID" ColumnName="NESSIE_ID" />
+                <ScalarProperty Name="SS_ID" ColumnName="SS_ID" />
+                <ScalarProperty Name="Name__Sortable_" ColumnName="Name__Sortable_" />
+                <ScalarProperty Name="GCM_Levels" ColumnName="GCM_Levels" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Hire_Date" ColumnName="Hire_Date" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Master_Cost_Center" ColumnName="Master_Cost_Center" />
+                <ScalarProperty Name="Organizational_Unit" ColumnName="Organizational_Unit" />
+                <ScalarProperty Name="Organizational_Unit_Description" ColumnName="Organizational_Unit_Description" />
+                <ScalarProperty Name="WBS_Code" ColumnName="WBS_Code" />
+                <ScalarProperty Name="WBS_Description_" ColumnName="WBS_Description_" />
+                <ScalarProperty Name="PID_" ColumnName="PID_" />
+                <ScalarProperty Name="Project_Name" ColumnName="Project_Name" />
+                <ScalarProperty Name="Sub_Verticals" ColumnName="Sub_Verticals" />
+                <ScalarProperty Name="Sub_Functions" ColumnName="Sub_Functions" />
+                <ScalarProperty Name="Company_Name" ColumnName="Company_Name" />
+                <ScalarProperty Name="Entity" ColumnName="Entity" />
+                <ScalarProperty Name="Functions__Ops_Support_" ColumnName="Functions__Ops_Support_" />
+                <ScalarProperty Name="Billability_Status" ColumnName="Billability_Status" />
+                <ScalarProperty Name="Reporting_Manager_SAP_ID" ColumnName="Reporting_Manager_SAP_ID" />
+                <ScalarProperty Name="Reporting_Manager" ColumnName="Reporting_Manager" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Curr__Loc__HR_Mngr" ColumnName="Curr__Loc__HR_Mngr" />
+                <ScalarProperty Name="E_Mail_Address" ColumnName="E_Mail_Address" />
+                <ScalarProperty Name="SS_E_Mail_Address" ColumnName="SS_E_Mail_Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

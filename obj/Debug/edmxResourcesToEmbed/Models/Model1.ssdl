@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HumanaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblClaimsdata">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProcessDate" Type="date" />
+    <Property Name="AuditID" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProcessorName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BatchNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Leads" Type="nvarchar" MaxLength="50" />
+    <Property Name="ClientID" Type="nchar" MaxLength="10" />
+    <Property Name="TotalChargeAmount" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="TotalPaidAmount" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Claimnumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="OriginalCorrectedClaim" Type="nvarchar" MaxLength="50" />
+    <Property Name="Auditor" Type="nvarchar" MaxLength="50" />
+    <Property Name="AuditDate" Type="date" />
+    <Property Name="IHT_nonIHT" Type="bit" />
+    <Property Name="ErrorComment" Type="nvarchar" MaxLength="50" />
+    <Property Name="ErrorType" Type="nvarchar" MaxLength="50" />
+    <Property Name="OverUnderPayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="ErrorCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="ErrorCategory" Type="nvarchar" MaxLength="50" />
+    <Property Name="ErrorSubCategory" Type="nvarchar" MaxLength="50" />
+    <Property Name="CorrectionStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="RebuttalComment" Type="nvarchar" MaxLength="50" />
+    <Property Name="AuditorAgreeDisagreeonRebuttal" Type="nvarchar" MaxLength="50" />
+    <Property Name="Auditorcommentifdisagree" Type="nvarchar" MaxLength="50" />
+    <Property Name="AssignName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Date" Type="date" />
+    <Property Name="Comments" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Humana.dbo.tblemployee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tblemployee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DAS_ID" Type="nvarchar" MaxLength="50" />
+    <Property Name="NESSIE_ID" Type="nvarchar" MaxLength="50" />
+    <Property Name="SS_ID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name__Sortable_" Type="nvarchar" MaxLength="50" />
+    <Property Name="GCM_Levels" Type="nvarchar" MaxLength="50" />
+    <Property Name="Designation" Type="nvarchar" MaxLength="50" />
+    <Property Name="Hire_Date" Type="datetime" />
+    <Property Name="Position" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+    <Property Name="Master_Cost_Center" Type="nvarchar" MaxLength="50" />
+    <Property Name="Organizational_Unit" Type="nvarchar" MaxLength="50" />
+    <Property Name="Organizational_Unit_Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="WBS_Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="WBS_Description_" Type="nvarchar" MaxLength="50" />
+    <Property Name="PID_" Type="nvarchar" MaxLength="50" />
+    <Property Name="Project_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sub_Verticals" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sub_Functions" Type="nvarchar" MaxLength="50" />
+    <Property Name="Company_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Entity" Type="nvarchar" MaxLength="50" />
+    <Property Name="Functions__Ops_Support_" Type="nvarchar" MaxLength="50" />
+    <Property Name="Billability_Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Reporting_Manager_SAP_ID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Reporting_Manager" Type="nvarchar" MaxLength="50" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" />
+    <Property Name="Location" Type="nvarchar" MaxLength="50" />
+    <Property Name="Curr__Loc__HR_Mngr" Type="nvarchar" MaxLength="50" />
+    <Property Name="E_Mail_Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="SS_E_Mail_Address" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblExcelfiles">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Filename" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="HumanaModelStoreContainer">
+    <EntitySet Name="tblClaimsdata" EntityType="Self.tblClaimsdata" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblExcelfiles" EntityType="Self.tblExcelfiles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblemployee" EntityType="Self.tblemployee" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tblemployee].[Id] AS [Id], 
+    [tblemployee].[DAS_ID] AS [DAS_ID], 
+    [tblemployee].[NESSIE_ID] AS [NESSIE_ID], 
+    [tblemployee].[SS_ID] AS [SS_ID], 
+    [tblemployee].[Name__Sortable_] AS [Name__Sortable_], 
+    [tblemployee].[GCM_Levels] AS [GCM_Levels], 
+    [tblemployee].[Designation] AS [Designation], 
+    [tblemployee].[Hire_Date] AS [Hire_Date], 
+    [tblemployee].[Position] AS [Position], 
+    [tblemployee].[Gender] AS [Gender], 
+    [tblemployee].[Master_Cost_Center] AS [Master_Cost_Center], 
+    [tblemployee].[Organizational_Unit] AS [Organizational_Unit], 
+    [tblemployee].[Organizational_Unit_Description] AS [Organizational_Unit_Description], 
+    [tblemployee].[WBS_Code] AS [WBS_Code], 
+    [tblemployee].[WBS_Description_] AS [WBS_Description_], 
+    [tblemployee].[PID_] AS [PID_], 
+    [tblemployee].[Project_Name] AS [Project_Name], 
+    [tblemployee].[Sub_Verticals] AS [Sub_Verticals], 
+    [tblemployee].[Sub_Functions] AS [Sub_Functions], 
+    [tblemployee].[Company_Name] AS [Company_Name], 
+    [tblemployee].[Entity] AS [Entity], 
+    [tblemployee].[Functions__Ops_Support_] AS [Functions__Ops_Support_], 
+    [tblemployee].[Billability_Status] AS [Billability_Status], 
+    [tblemployee].[Reporting_Manager_SAP_ID] AS [Reporting_Manager_SAP_ID], 
+    [tblemployee].[Reporting_Manager] AS [Reporting_Manager], 
+    [tblemployee].[Country] AS [Country], 
+    [tblemployee].[Location] AS [Location], 
+    [tblemployee].[Curr__Loc__HR_Mngr] AS [Curr__Loc__HR_Mngr], 
+    [tblemployee].[E_Mail_Address] AS [E_Mail_Address], 
+    [tblemployee].[SS_E_Mail_Address] AS [SS_E_Mail_Address]
+    FROM [dbo].[tblemployee] AS [tblemployee]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

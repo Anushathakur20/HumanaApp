@@ -1,0 +1,467 @@
+﻿
+@model HumanaApp.Models.Claim
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+<div class="container py-3" style="margin-top:30px;">
+    <div class="title h1 text-center"></div>
+    <!-- Card Start -->
+    @* <div class="card">*@
+    <div class="row ">
+        <div class="col-md-7 px-3">
+            @*<div class="card-block px-6">
+                    <h4 class="card-title"></h4>
+                </div>*@
+            <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+            <div class="upload-container">
+                <label for="file-upload" class="upload-label">
+                    <i class="fas fa-cloud-upload-alt"></i> Choose an Excel file
+                </label>
+                @using (Html.BeginForm("Index", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @*<input type="file" name="file" id="file" />
+                        <input id="uploadFile" class="f-input" />
+                        <div class="fileUpload btn btn--browse">
+                            <span>Browse</span>
+                            <input id="uploadBtn" type="file" class="upload" />
+                        </div>*@
+                    <div class='file-input'>
+                        <input type="file" name="file" id="file" />
+                        <span class='button'>Choose</span>
+                        <span class='label' data-js-label>No file selected</span>
+                    </div><br /><br />
+                    <input type="submit" value="Upload" class="upload-button" />
+                    if (ViewBag.Message != null)
+                    {
+                        <div class="alert alert-success">
+                            <!-- you missed this line of code -->
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            @ViewBag.Message
+                        </div>
+                    }
+                }
+            </div>
+
+
+        </div>
+
+    </div>
+    @*  </div> *@
+    <table id="fileTable" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>File Name</th>
+                <th>View Data</th>
+                <th>Delete File</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Table rows will be populated dynamically -->
+        </tbody>
+    </table>
+    <!-- End of card -->
+    <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <div class="nav-tabs-container" style="margin-top: 30px">
+        <ul class="nav-tabs">
+            <li class="active"><a href="#view" data-toggle="tab">View Claims</a></li>
+            <li><a href="#upload" data-toggle="tab">Upload Claims</a></li>
+            <li><a href="#assign" data-toggle="tab">Submit Feedback</a></li>
+        </ul>
+        <div class="tab-content">
+
+            <div class="tab-pane" id="view" style="margin-top: 30px">
+                <div class="container">-->
+    @*<table id="fileTable" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Serial No.</th>
+                    <th>File Name</th>
+                    <th>View Data</th>
+
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>*@
+    <!--<table id="fileTable" class="display">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>File Name</th>
+                <th>View Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Table rows will be populated dynamically -->
+    <!--</tbody>
+        </table>
+    </div>-->
+    <!-- Add this code within your existing HTML structure -->
+    <!--<div class="modal fade" id="viewDataModal" tabindex="-1" role="dialog" aria-labelledby="viewDataModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="viewDataModalLabel">Excel Data</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table id="excelDataTable" class="table table-bordered">
+                        <thead>-->
+    <!-- Excel column headers will be inserted here dynamically -->
+    <!--</thead>
+    <tbody>-->
+    <!-- Excel data rows will be inserted here dynamically -->
+    <!--</tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="assignModal" tabindex="-1" role="dialog" aria-labelledby="assignModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="assignModalLabel">Assign File</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="assignForm">
+                        <div class="form-group">
+                            <label for="assignName">Assign Name</label>
+                            <select class="form-control" id="assignName" name="assignName">
+                                <option value="John Doe">John Doe</option>
+                                <option value="Jane Smith">Jane Smith</option>-->
+    <!-- Add more options as needed -->
+    <!--</select>
+                            </div>
+                            <div class="form-group">
+                                <label for="assignDate">Assign Date</label>
+                                <input type="text" class="form-control" id="assignDate" name="assignDate" placeholder="Enter date">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="tab-pane active" id="upload">
+        <div class="upload-container">
+            <label for="file-upload" class="upload-label">
+                <i class="fas fa-cloud-upload-alt"></i> Choose an Excel file
+            </label>
+            @using (Html.BeginForm("Index", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input type="file" name="file" id="file" />
+                <input type="submit" value="Upload" />
+            }
+        </div>
+        <br />
+        <br />
+        <div id="progressbar" class="progressbar">
+            <div id="progresslabel" class="progressbarlabel"></div>
+        </div>
+
+    </div>-->
+    @*<div class="tab-pane" id="assign" style="margin-top: 30px">
+            @using (Html.BeginForm("Create", "Upload", FormMethod.Post, new { enctype = "multipart/from-data" }))
+            {
+                <div class="row form-group">
+                    <div class="col-md-3">
+                        @Html.Label("Title")
+
+                        @Html.TextBoxFor(x => x.Title, new
+                        {
+                            @class = "form-control required",
+                            autocomplete = "off",
+                        @type = "text"
+                        })
+                        @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Claim Number")
+                        @Html.TextBoxFor(x => x.Claim_Number, new
+                        {
+                            @class = "form-control required",
+                            autocomplete =
+                        "off",
+                            @type = "text",
+                            @ViewBag.reportingmanager
+                        })
+                        @Html.ValidationMessageFor(m => m.Claim_Number, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Client ID")
+                        @Html.TextBoxFor(x => x.Client_ID, new
+                        {
+                            @class = "form-control required",
+                            autocomplete = "off",
+                        @type = "text",
+                            @ViewBag.reportingmanager
+                        })
+                        @Html.ValidationMessageFor(m => m.Client_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-3">
+                        @Html.Label("Processor Name As per Report")
+                        @Html.TextBoxFor(x => x.Processor_Name_Asper_Report, new
+                        {
+                            @class = "form-control required",
+                        autocomplete = "off",
+                            @type = "text"
+                        })
+                        @Html.ValidationMessageFor(m => m.Processor_Name_Asper_Report, "", new
+                        {
+                            @class = "text-danger"
+                        })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Original Corrected Claims")
+                        @Html.TextBoxFor(x => x.Original_Corrected_Claims, new
+                        {
+                            @class = "form-control required",
+                        autocomplete = "off",
+                            @type = "text",
+                            @ViewBag.reportingmanager
+                        })
+                        @Html.ValidationMessageFor(m => m.Original_Corrected_Claims, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Claims Type")
+                        @Html.TextBoxFor(x => x.Claims_Type, new
+                        {
+                            @class = "form-control required",
+                            autocomplete =
+                        "off",
+                            @type = "text",
+                            @ViewBag.reportingmanager
+                        })
+                        @Html.ValidationMessageFor(m => m.Claims_Type, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-3">
+                        @Html.Label("Ex code")
+                        @Html.TextBoxFor(x => x.Ex_code, new
+                        {
+                            @class = "form-control required",
+                            autocomplete = "off",
+                        @type = "text"
+                        })
+                        @Html.ValidationMessageFor(m => m.Ex_code, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Total Paid Amount")
+                        @Html.TextBoxFor(x => x.Total_Paid_Amount, new
+                        {
+                            @class = "form-control required",
+                            autocomplete
+                        = "off",
+                            @type = "text",
+                            @ViewBag.reportingmanager
+                        })
+                        @Html.ValidationMessageFor(m => m.Total_Paid_Amount, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Defect Status")
+                        @Html.TextBoxFor(x => x.Defect_Status, new
+                        {
+                            @class = "form-control required",
+                            autocomplete =
+                        "off",
+                            @type = "text",
+                            @ViewBag.reportingmanager
+                        })
+                        @Html.ValidationMessageFor(m => m.Defect_Status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-3">
+                        @Html.Label("Over Payment")
+                        @Html.TextBoxFor(x => x.Over_Payment, new
+                        {
+                            @class = "form-control required",
+                            autocomplete =
+                        "off",
+                            @type = "text"
+                        })
+                        @Html.ValidationMessageFor(m => m.Over_Payment, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Under Payment")
+                        @Html.TextBoxFor(x => x.Under_Payment, new
+                        {
+                            @class = "form-control required",
+                            autocomplete =
+                        "off",
+                            @type = "text",
+                            @ViewBag.reportingmanager
+                        })
+                        @Html.ValidationMessageFor(m => m.Under_Payment, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-3">
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+                    </div>
+                </div>
+
+            }
+        </div>*@
+</div>
+@*</div>-->*@
+
+
+
+@section scripts {
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/CSS/Upload.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />        @*<style>
+
+            .btn-view {
+                background-color: #007bff;
+                color: #fff;
+            }
+
+            .btn-assign {
+                background-color: #28a745;
+                color: #fff;
+            }
+
+
+            #fileTable tbody tr:hover {
+                background-color: #f5f5f5;
+            }
+        </style>*@
+    <script>
+
+   function loadFileList() {
+            $.ajax({
+                url: '@Url.Action("GetExcelFiles", "Upload")',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    var tableBody = $('#fileTable tbody');
+                    tableBody.empty();
+
+                    for (var i = 0; i < data.length; i++) {
+                        var row = '<tr>';
+                        row += '<td>' + (i + 1) + '</td>';
+                        row += '<td>' + data[i] + '</td>';
+                        row += '<td><a href="@Url.Action("LoadData", "Upload")?fileName=' + encodeURIComponent(data[i]) + '" class="btn btn-primary btn-sm btn-view">View Data</a></td>';
+                        row += '<td> <a href="#" class="btn btn-primary btn-sm btn-del" id="deleteFileButton" >Delete File</a></td>';
+
+                        row += '</tr>';
+
+                        tableBody.append(row);
+                    }
+                    $('.btn-view').click(function (e) {
+                        e.preventDefault();
+
+                        var url = $(this).attr('href');
+                        var fileName = decodeURIComponent(url.split('fileName=')[1]);
+
+                                // Redirect to the ViewData page with the fileName parameter
+                        window.location.href = '@Url.Action("LoadData", "Upload")?fileName=' + encodeURIComponent(fileName);
+
+
+                    });
+
+
+                },
+                error: function () {
+                    console.log("Error occurred while loading the file list.");
+                }
+            });
+            } loadFileList();
+
+
+
+    </script>
+    <!-- Include SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <!-- Include SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.btn-del').click(function (e) {
+                e.preventDefault();
+
+                // Get the file name associated with the clicked button's row
+                var row = $(this).closest('tr');
+                var fileName = row.find('td:nth-child(2)').text(); // Assuming the file name is in the second column
+
+                // Make an AJAX request to delete the file
+                $.ajax({
+                    type: 'POST', // You can also use 'GET' depending on your requirements
+                    url: '/Upload/DeleteExcelFile', // Replace with the actual controller and action method
+                    data: { fileName: fileName }, // Pass the file name as data
+                    success: function (data) {
+                        if (data.success) {
+                            // File deletion was successful
+                            alert('File deleted successfully.');
+                            // You can update the UI or perform other actions as needed
+                            row.remove(); // Remove the row from the table
+                        } else {
+                            // File deletion failed
+                            alert('Failed to delete the file.');
+                        }
+                    },
+                    error: function () {
+                        // Error occurred during the AJAX request
+                        alert('An error occurred while deleting the file.');
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+
+        var inputs = document.querySelectorAll('.file-input')
+
+        for (var i = 0, len = inputs.length; i < len; i++) {
+            customInput(inputs[i])
+        }
+
+        function customInput(el) {
+            const fileInput = el.querySelector('[type="file"]')
+            const label = el.querySelector('[data-js-label]')
+
+            fileInput.onchange =
+                fileInput.onmouseout = function () {
+                    if (!fileInput.value) return
+
+                    var value = fileInput.value.replace(/^.*[\\\/]/, '')
+                    el.className += ' -chosen'
+                    label.innerText = value
+                }
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            $('#fileTable').DataTable();
+        });
+    </script>
+
+}

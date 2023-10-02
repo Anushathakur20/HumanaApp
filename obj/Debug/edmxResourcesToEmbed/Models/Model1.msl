@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HumanaModelStoreContainer" CdmEntityContainer="HumanaEntities1">
+    <EntitySetMapping Name="tblClaimsdatas">
+      <EntityTypeMapping TypeName="HumanaModel.tblClaimsdata">
+        <MappingFragment StoreEntitySet="tblClaimsdata">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProcessDate" ColumnName="ProcessDate" />
+          <ScalarProperty Name="AuditID" ColumnName="AuditID" />
+          <ScalarProperty Name="ProcessorName" ColumnName="ProcessorName" />
+          <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
+          <ScalarProperty Name="Leads" ColumnName="Leads" />
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="TotalChargeAmount" ColumnName="TotalChargeAmount" />
+          <ScalarProperty Name="TotalPaidAmount" ColumnName="TotalPaidAmount" />
+          <ScalarProperty Name="Claimnumber" ColumnName="Claimnumber" />
+          <ScalarProperty Name="OriginalCorrectedClaim" ColumnName="OriginalCorrectedClaim" />
+          <ScalarProperty Name="Auditor" ColumnName="Auditor" />
+          <ScalarProperty Name="AuditDate" ColumnName="AuditDate" />
+          <ScalarProperty Name="IHT_nonIHT" ColumnName="IHT_nonIHT" />
+          <ScalarProperty Name="ErrorComment" ColumnName="ErrorComment" />
+          <ScalarProperty Name="ErrorType" ColumnName="ErrorType" />
+          <ScalarProperty Name="OverUnderPayment" ColumnName="OverUnderPayment" />
+          <ScalarProperty Name="ErrorCode" ColumnName="ErrorCode" />
+          <ScalarProperty Name="ErrorCategory" ColumnName="ErrorCategory" />
+          <ScalarProperty Name="ErrorSubCategory" ColumnName="ErrorSubCategory" />
+          <ScalarProperty Name="CorrectionStatus" ColumnName="CorrectionStatus" />
+          <ScalarProperty Name="RebuttalComment" ColumnName="RebuttalComment" />
+          <ScalarProperty Name="AuditorAgreeDisagreeonRebuttal" ColumnName="AuditorAgreeDisagreeonRebuttal" />
+          <ScalarProperty Name="Auditorcommentifdisagree" ColumnName="Auditorcommentifdisagree" />
+          <ScalarProperty Name="AssignName" ColumnName="AssignName" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblExcelfiles">
+      <EntityTypeMapping TypeName="HumanaModel.tblExcelfile">
+        <MappingFragment StoreEntitySet="tblExcelfiles">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Filename" ColumnName="Filename" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblemployees">
+      <EntityTypeMapping TypeName="HumanaModel.tblemployee">
+        <MappingFragment StoreEntitySet="tblemployee">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DAS_ID" ColumnName="DAS_ID" />
+          <ScalarProperty Name="NESSIE_ID" ColumnName="NESSIE_ID" />
+          <ScalarProperty Name="SS_ID" ColumnName="SS_ID" />
+          <ScalarProperty Name="Name__Sortable_" ColumnName="Name__Sortable_" />
+          <ScalarProperty Name="GCM_Levels" ColumnName="GCM_Levels" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="Hire_Date" ColumnName="Hire_Date" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Master_Cost_Center" ColumnName="Master_Cost_Center" />
+          <ScalarProperty Name="Organizational_Unit" ColumnName="Organizational_Unit" />
+          <ScalarProperty Name="Organizational_Unit_Description" ColumnName="Organizational_Unit_Description" />
+          <ScalarProperty Name="WBS_Code" ColumnName="WBS_Code" />
+          <ScalarProperty Name="WBS_Description_" ColumnName="WBS_Description_" />
+          <ScalarProperty Name="PID_" ColumnName="PID_" />
+          <ScalarProperty Name="Project_Name" ColumnName="Project_Name" />
+          <ScalarProperty Name="Sub_Verticals" ColumnName="Sub_Verticals" />
+          <ScalarProperty Name="Sub_Functions" ColumnName="Sub_Functions" />
+          <ScalarProperty Name="Company_Name" ColumnName="Company_Name" />
+          <ScalarProperty Name="Entity" ColumnName="Entity" />
+          <ScalarProperty Name="Functions__Ops_Support_" ColumnName="Functions__Ops_Support_" />
+          <ScalarProperty Name="Billability_Status" ColumnName="Billability_Status" />
+          <ScalarProperty Name="Reporting_Manager_SAP_ID" ColumnName="Reporting_Manager_SAP_ID" />
+          <ScalarProperty Name="Reporting_Manager" ColumnName="Reporting_Manager" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Curr__Loc__HR_Mngr" ColumnName="Curr__Loc__HR_Mngr" />
+          <ScalarProperty Name="E_Mail_Address" ColumnName="E_Mail_Address" />
+          <ScalarProperty Name="SS_E_Mail_Address" ColumnName="SS_E_Mail_Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

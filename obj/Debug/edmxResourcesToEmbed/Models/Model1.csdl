@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HumanaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblClaimsdata">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProcessDate" Type="DateTime" Precision="0" />
+    <Property Name="AuditID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProcessorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BatchNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Leads" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ClientID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="TotalChargeAmount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="TotalPaidAmount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Claimnumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OriginalCorrectedClaim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Auditor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AuditDate" Type="DateTime" Precision="0" />
+    <Property Name="IHT_nonIHT" Type="Boolean" />
+    <Property Name="ErrorComment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ErrorType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OverUnderPayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ErrorCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ErrorCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ErrorSubCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CorrectionStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RebuttalComment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AuditorAgreeDisagreeonRebuttal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Auditorcommentifdisagree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AssignName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblExcelfile">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Filename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblemployee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DAS_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NESSIE_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SS_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name__Sortable_" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GCM_Levels" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Hire_Date" Type="DateTime" Precision="3" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Master_Cost_Center" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Organizational_Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Organizational_Unit_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WBS_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WBS_Description_" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PID_" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Project_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sub_Verticals" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sub_Functions" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Company_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Entity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Functions__Ops_Support_" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Billability_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Reporting_Manager_SAP_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Reporting_Manager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Curr__Loc__HR_Mngr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="E_Mail_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SS_E_Mail_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="HumanaEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblClaimsdatas" EntityType="Self.tblClaimsdata" />
+    <EntitySet Name="tblExcelfiles" EntityType="Self.tblExcelfile" />
+    <EntitySet Name="tblemployees" EntityType="Self.tblemployee" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,129 @@
+﻿@{
+    ViewBag.Title = "ViewData";
+}
+@*<link rel="stylesheet" href="https://cdn.datatables.net/1.11.6/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.6/css/dataTables.bootstrap4.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.6/js/dataTables.bootstrap4.min.js"></script>*@
+
+<div>
+
+    <div class="card-header">
+        <div class="row" style="margin :100px, 30px, 50px, 30px">
+           <button type="button" class="status-btn btn btn-success" Approved by RM" id="approve">Assign</button>
+           
+        </div>
+    </div>
+
+</div>
+
+
+<table id="excelDataTable" class="table table-bordered" style="margin-top: 100px">
+    <thead>
+        <!-- Excel column headers will be inserted here dynamically by DataTables -->
+    </thead>
+    <tbody>
+        <!-- Excel data rows will be inserted here dynamically by DataTables -->
+    </tbody>
+</table>
+
+<div class="modal fade" id="assignModal" tabindex="-1" role="dialog" aria-labelledby="assignModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="assignModalLabel">Assign File</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="assignForm">
+                    <div class="form-group">
+                        <label for="assignName">Assign Name</label>
+                        <select class="form-control" id="assignName" name="assignName">
+                            <option value="John Doe">John Doe</option>
+                            <option value="Jane Smith">Jane Smith</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="assignDate">Assign Date</label>
+                        <input type="text" class="form-control" id="assignDate" name="assignDate" placeholder="Enter date">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        e.preventDefault();
+        var fileName = $(this).data('file');
+        $('#assignModal').modal('show');
+    });
+
+
+
+    $(document).ready(function () {
+
+        var currentUrl = window.location.href;
+
+        // Parse the URL to extract query parameters
+        var urlParams = new URLSearchParams(new URL(currentUrl).search);
+
+        // Get the value of the 'fileName' parameter
+        var fileName = urlParams.get('fileName');
+
+                    $.ajax({
+                url: '@Url.Action("GetExcelData", "Upload")', // Replace with the correct server-side URL
+                type: 'GET',
+                data: { fileName: fileName },
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    var table = $('#excelDataTable');
+                    var thead = table.find('thead');
+                    var tbody = table.find('tbody');
+                    thead.empty();
+                    tbody.empty();
+
+                    // Create column headers
+                    var headerRow = '<tr>';
+                    headerRow += '<th></th>'; // Add a placeholder for the checkbox column
+                    for (var col in data[0]) {
+                        headerRow += '<th>' + col + '</th>';
+                    }
+                    headerRow += '</tr>';
+                    thead.append(headerRow);
+
+                    // Populate data rows and add checkboxes
+                    for (var i = 0; i < data.length; i++) {
+                        var dataRow = '<tr>';
+                        dataRow += '<td><input type="checkbox" class="data-checkbox"></td>'; // Add checkbox
+                        for (var col in data[i]) {
+                            dataRow += '<td>' + data[i][col] + '</td>';
+                        }
+                        dataRow += '</tr>';
+                        tbody.append(dataRow);
+                    }
+
+                    // Initialize DataTables after populating data
+                    table.DataTable({
+                        "paging": false, // Disable pagination
+                        "searching": true, // Enable search box
+                        "scrollY": "400px", // Enable vertical scrolling
+                        "scrollX": true, // Enable horizontal scrolling
+                        "dom": 'lrtip' // Control which parts of the DataTables UI are displayed
+                    });
+                },
+                error: function () {
+                    console.log("Error occurred while loading Excel data.");
+                }
+            });
+
+    });
+</script>

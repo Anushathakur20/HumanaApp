@@ -1,0 +1,168 @@
+﻿
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div class="container">
+    <h2>Excel Files List</h2>
+    <table id="fileTable" class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Serial No.</th>
+                <th>File Name</th>
+                <th>View Data</th>
+                <th>Assign</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<!-- Add this code within your existing HTML structure -->
+
+<div class="modal fade" id="viewDataModal" tabindex="-1" role="dialog" aria-labelledby="viewDataModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="viewDataModalLabel">Excel Data</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="excelDataTable" class="table table-bordered">
+                    <thead>
+                        <!-- Excel column headers will be inserted here dynamically -->
+                    </thead>
+                    <tbody>
+                        <!-- Excel data rows will be inserted here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts {
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+
+        .btn-view {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn-assign {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+
+        #fileTable tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+    <script>
+
+   function loadFileList() {
+            $.ajax({
+                url: '@Url.Action("GetExcelFiles", "Upload")',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    var tableBody = $('#fileTable tbody');
+                    tableBody.empty();
+
+                    for (var i = 0; i < data.length; i++) {
+                        var row = '<tr>';
+                        row += '<td>' + (i + 1) + '</td>';
+                        row += '<td>' + data[i] + '</td>';
+                        row += '<td><a href="@Url.Action("ViewData", "Upload")?fileName=' + encodeURIComponent(data[i]) + '" class="btn btn-primary btn-sm btn-view">View Data</a></td>';
+                        row += '<td><a href="#" class="btn btn-success btn-sm btn-assign" data-file="' + encodeURIComponent(data[i]) + '">Assign</a></td>';
+                        row += '</tr>';
+
+                        tableBody.append(row);
+                    }
+
+                    $('.btn-assign').click(function (e) {
+                        e.preventDefault();
+                        var fileName = $(this).data('file');
+                        $('#assignModal').modal('show');
+                    });
+
+                    $('.btn-view').click(function (e) {
+                        e.preventDefault();
+
+                        // Extract the filename from the URL
+                        var url = $(this).attr('href');
+                        var fileName = decodeURIComponent(url.split('fileName=')[1]);
+
+                                                 $.ajax({
+                                url: '@Url.Action("GetExcelData", "Upload")', // Replace with the correct server-side URL
+                                type: 'GET',
+                                data: { fileName: fileName },
+                                dataType: 'json',
+                                                     success: function (data) {
+                                                         console.log(data);
+                                    var table = $('#excelDataTable');
+                                    var thead = table.find('thead');
+                                    var tbody = table.find('tbody');
+                                    thead.empty();
+                                    tbody.empty();
+
+                                    // Create column headers
+                                    var headerRow = '<tr>';
+                                    for (var col in data[0]) {
+                                        headerRow += '<th>' + col + '</th>';
+                                    }
+                                    headerRow += '</tr>';
+                                    thead.append(headerRow);
+
+                                    // Populate data rows
+                                    for (var i = 0; i < data.length; i++) {
+                                        var dataRow = '<tr>';
+                                        for (var col in data[i]) {
+                                            dataRow += '<td>' + data[i][col] + '</td>';
+                                        }
+                                        dataRow += '</tr>';
+                                        tbody.append(dataRow);
+                                    }
+
+                                    // Show the modal
+                                    $('#viewDataModal').modal('show');
+                                },
+                                error: function () {
+                                    console.log("Error occurred while loading Excel data.");
+                                }
+                            });
+                        });
+                },
+                error: function () {
+                    console.log("Error occurred while loading the file list.");
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            $('#fileTable').DataTable({
+                autoWidth: false, // Disable automatic column width calculation
+                columnDefs: [
+                    { targets: 0, width: '30px' },  // Set width for the first column
+                    { targets: 1, width: '10px' }, // Set width for the second column
+                    // Add more entries for other columns as needed
+                ]
+            });
+        });
+
+        $(document).ready(function () {
+            loadFileList();
+        });
+
+
+    </script>
+}
